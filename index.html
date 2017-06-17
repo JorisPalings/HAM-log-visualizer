@@ -2,18 +2,18 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Hello world!</title>
+    <link rel="stylesheet" href="./css/main.css">
   </head>
   <body>
-    <h1>Hello World!</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+    <div class="drag-and-drop__dropzone file-upload">
+      <p class="file-upload__uploaded-file-name">No file uploaded</p>
+      <span>Drag and drop a file here</span>
+      <label class="file-upload__label" for="file-upload">or browse your computer for a file</label>
+      <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log">
+    </div>
   </body>
-
   <script>
-    // You can also require other files to run in this process
     require('./renderer.js')
   </script>
 </html>

@@ -1,0 +1,16 @@
+.file-upload {
+  
+  &__uploaded-file-name {
+    color: #aaa;
+  }
+
+  &__label { 
+    border-bottom: 1px solid green;
+    cursor: pointer;
+  }
+
+  &__input {
+    display: none;
+  }
+}
+

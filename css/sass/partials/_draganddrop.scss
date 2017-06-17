@@ -1,0 +1,24 @@
+.drag-and-drop {
+
+  &__dropzone {
+    background: #fff;
+    border: .125em dashed #888;
+    margin: 1em;
+    padding: 1em;
+    width: calc(100% - 2em);
+
+    &.dragover {
+      animation: .5s infinite alternate border;
+    }
+  }
+}
+
+@keyframes border {
+  from {
+    border: .125em dashed #0f0; 
+  }
+
+  to {
+    border: .125em dashed #080;
+  }
+}

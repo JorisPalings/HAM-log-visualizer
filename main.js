@@ -3,6 +3,8 @@ const electron = require('electron')
 const app = electron.app
 // Module to create native browser window.
 const BrowserWindow = electron.BrowserWindow
+// Module to live reload the application.
+const client = require('electron-connect').client;
 
 const path = require('path')
 const url = require('url')
@@ -23,7 +25,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  mainWindow.webContents.openDevTools()
 
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
@@ -32,6 +34,9 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  // Connect to electron-connect (live reload).
+  client.create(mainWindow);
 }
 
 // This method will be called when Electron has finished
