@@ -1,8 +1,8 @@
-'use strict'
+'use strict';
 
-const gulp = require('gulp')
-const sass = require('gulp-sass')
-const electron = require('electron-connect').server.create()
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const electron = require('electron-connect').server.create();
 
 const paths = {
   browser: './main.js',
@@ -12,9 +12,9 @@ const paths = {
 }
 
 gulp.task('electron:watch', () => {
-  electron.start()
-  gulp.watch(paths.browser, electron.restart)
-  gulp.watch(paths.renderer, electron.reload)
+  electron.start();
+  gulp.watch(paths.browser, electron.restart);
+  gulp.watch(paths.renderer, electron.reload);
 });
 
 gulp.task('sass', () => {
@@ -24,7 +24,7 @@ gulp.task('sass', () => {
 });
  
 gulp.task('sass:watch', () => {
-  gulp.watch(paths.sass, ['sass'])
+  gulp.watch(paths.sass, ['sass']);
 });
 
-gulp.task('default', ['sass', 'sass:watch', 'electron:watch'])
+gulp.task('default', ['sass', 'sass:watch', 'electron:watch']);
