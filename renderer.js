@@ -2,6 +2,8 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
+'use strict'
+
 const parser = require('./js/parser');
 
 (() => {
@@ -36,7 +38,6 @@ const parser = require('./js/parser');
 
   const fileUpload = document.getElementsByClassName('file-upload__input')[0]
   fileUpload.onchange = (event) => {
-    console.log(event);
     handleFileUpload(event.target.files[0])
     return false
   }
@@ -44,15 +45,12 @@ const parser = require('./js/parser');
 
 function handleFileUpload(file) {
   let fileReader = new FileReader();
-  console.log('FileReader created', fileReader)
 
   // When the File is read entirely, process its contents
   fileReader.onload = () => {
     // Show the uploaded file's name and size
     const selectedFile = document.getElementsByClassName('file-upload__uploaded-file-name')[0]
-    console.log(file);
     selectedFile.innerHTML = `${file.name} (${bytesToSize(file.size)})`
-    console.log('File loaded', fileReader.result)
     parser.parse(file, fileReader.result);
   }
 

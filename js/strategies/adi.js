@@ -1,3 +1,7 @@
+// http://www.adif.org/305/ADIF_305.htm
+
+'use strict'
+
 const delimiterTags = {
   header: {
     upper: '<EOH>',
@@ -48,7 +52,7 @@ const parse = function(file, fileContents) {
   // and add every field [key, value] Array as an Object property
   let calls = []
   records.forEach(record => {
-    call = {}
+    let call = {}
     record.forEach(field => {
       call[field[0]] = field[1]
     })
@@ -56,7 +60,7 @@ const parse = function(file, fileContents) {
   })
 
   // We now have an Array of call Objects, where every call Object has a
-  // number of field properties
+  // property for every call field
   console.log(calls)
 }
 
