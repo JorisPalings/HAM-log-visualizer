@@ -57,4 +57,9 @@ const parse = function(file, fileContents) {
   console.log(records);
 }
 
+const uniformParse = function(file, fileContents) {
+  parse(file, fileContents);
+}
+
 module.exports.parse = parse;
+module.exports.uniformParse = uniformParse;

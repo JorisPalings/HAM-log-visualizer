@@ -5,11 +5,8 @@
 'use strict';
 
 const parser = require('./js/parser');
-const locator = require('./js/locator');
 
 (() => {
-
-  locator.convert('JO20IV');
   const dropzone = document.getElementsByClassName('drag-and-drop__dropzone')[0];
 
   dropzone.ondragover = () => {
