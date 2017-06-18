@@ -58,10 +58,9 @@ const parse = function(file, fileContents) {
       call[field[0]] = field[1];
     })
     calls.push(call);
-  })
+  });
 
-  // We now have an Array of call Objects, where every call Object has a
-  // property for every call field
+  console.log(header);
   console.log(calls);
 }
 

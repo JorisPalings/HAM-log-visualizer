@@ -1,5 +1,6 @@
 'use strict';
 
+// Define the Record class
 function Record(date, time, frequency, mode, myCall, sentRST, myExchange, 
   myGridSquare, call, receivedRST, exchange, gridSquare) {
     this.date = date;
@@ -30,6 +31,7 @@ const parse = function(file, fileContents) {
   records.forEach((record, recordIndex) => {
     records[recordIndex] = new Record(...(record.trim().split(/\s+/g)));
   })
+  
   console.log(records);
 }
 
