@@ -15,7 +15,7 @@ const parse = function(file, fileContents) {
   if(fileName.endsWith('.adi')) {
     console.log(adiParser.uniformParse(file, fileContents));
   } else if(fileName.endsWith('.edi')) {
-    ediParser.parse(file, fileContents);
+    console.log(ediParser.uniformParse(file, fileContents));
   } else if(fileName.endsWith('.log')) {
     logParser.parse(file, fileContents);
   } else if(fileName.endsWith('.txt')) {

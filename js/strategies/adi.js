@@ -67,6 +67,8 @@ const parse = function(file, fileContents) {
   return calls;
 }
 
+// Return only the necessary fields of the file's records in the form of a
+// uniform Record object
 const uniformParse = function(file, fileContents) {
   let records = parse(file, fileContents);
   let uniformRecords = [];
