@@ -9,22 +9,26 @@ const parser = require('./js/parser');
 (() => {
   const dropzone = document.getElementsByClassName('drag-and-drop__dropzone')[0];
 
-  dropzone.ondragover = () => {
+  dropzone.ondragover = (event) => {
+    console.log('dragover', event);
     dropzone.classList.add('dragover');
     return false;
   }
 
-  dropzone.ondragleave = () => {
+  dropzone.ondragleave = (event) => {
+    console.log('dragleave', event);
     dropzone.classList.remove('dragover');
     return false;
   }
 
-  dropzone.ondragend = () => {
+  dropzone.ondragend = (event) => {
+    console.log('dragend', event);
     dropzone.classList.remove('dragover');
     return false;
   }
 
   dropzone.ondrop = (event) => {
+    console.log('drop', event);
     // Stop the browser window from simply displaying the dropped file
     event.stopPropagation();
     event.preventDefault();
@@ -48,10 +52,19 @@ function handleFileUpload(file) {
 
   // When the File is read entirely, process its contents
   fileReader.onload = () => {
-    // Show the uploaded file's name and size
     const selectedFile = document.getElementsByClassName('file-upload__uploaded-file-name')[0];
-    selectedFile.innerHTML = `${file.name} (${bytesToSize(file.size)})`;
-    parser.parse(file, fileReader.result);
+    try {
+      parser.parse(file, fileReader.result);
+      // Show the uploaded file's name and size
+      selectedFile.innerHTML = `${file.name} (${bytesToSize(file.size)})`;
+      selectedFile.classList.remove('upload-failed');
+      selectedFile.classList.add('upload-successful');
+    } catch(exception) {
+      console.log(exception.message);
+      document.getElementsByClassName('file-upload__uploaded-file-name')[0].innerHTML = exception.message;
+      selectedFile.classList.remove('upload-successful');
+      selectedFile.classList.add('upload-failed');
+    }
   }
 
   // Read the File's contents from its reference

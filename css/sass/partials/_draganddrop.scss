@@ -1,24 +1,28 @@
 .drag-and-drop {
 
   &__dropzone {
-    background: #fff;
-    border: .125em dashed #888;
-    margin: 1em;
+    background: $darkgrey;
+    border: .125em dashed $amber;
+    border-radius: .5em;
+    box-shadow: 0 0 0 .5em $darkgrey;
+    margin: 1.5em;
     padding: 1em;
-    width: calc(100% - 2em);
+    transition: all .25s ease-in-out;
+    width: calc(100% - 3em);
 
     &.dragover {
       animation: .5s infinite alternate border;
+      box-shadow: 0 0 0 .5em $darkgrey, $shadow4;
     }
   }
 }
 
 @keyframes border {
   from {
-    border: .125em dashed #0f0; 
+    border: .125em dashed $amber; 
   }
 
   to {
-    border: .125em dashed #080;
+    border: .125em dashed $orange;
   }
 }

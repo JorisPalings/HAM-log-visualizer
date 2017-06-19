@@ -1,11 +1,20 @@
 .file-upload {
   
   &__uploaded-file-name {
-    color: #aaa;
+    color: $grey;
+    transition: all .25s ease-in-out;
+
+    &.upload-successful {
+      color: $green;
+    }
+
+    &.upload-failed {
+      color: $red;
+    }
   }
 
   &__label { 
-    border-bottom: 1px solid green;
+    border-bottom: 1px solid $amber;
     cursor: pointer;
   }
 
