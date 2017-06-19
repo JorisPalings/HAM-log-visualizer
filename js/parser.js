@@ -17,7 +17,7 @@ const parse = function(file, fileContents) {
   } else if(fileName.endsWith('.edi')) {
     console.log(ediParser.uniformParse(file, fileContents));
   } else if(fileName.endsWith('.log')) {
-    logParser.parse(file, fileContents);
+    console.log(logParser.uniformParse(file, fileContents));
   } else if(fileName.endsWith('.txt')) {
     txtParser.parse(file, fileContents);
   } else {

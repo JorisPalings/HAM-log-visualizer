@@ -1,7 +1,12 @@
 'use strict';
 
+// Contains the model for the uniform Record object
+const Record = require('../models/record').Record;
+// External library for more convenient Date manipulation
+const moment = require('../../node_modules/moment/moment');
+
 // Define the Record class
-function Record(frequency, mode, date, time, myCall, sentRST, myExchange,
+function LogRecord(frequency, mode, date, time, myCall, sentRST, myExchange,
   call, receivedRST, exchange, gridSquare) {
     this.frequency = frequency;
     this.mode = mode;
@@ -37,15 +42,28 @@ const parse = function(file, fileContents) {
   // Remove all whitespace and the END-OF-LOG tag from the records
   // Split each record into fields and turn it into a Rescord object
   records.forEach((record, recordIndex) => {
-    records[recordIndex] = new Record(...(record.replace('END-OF-LOG:', '').trim().split(/ +/g)));
+    records[recordIndex] = new LogRecord(...(record.replace('END-OF-LOG:', '').trim().split(/ +/g)));
   });
-  
-  console.log(header);
-  console.log(records);
+
+  return records;
 }
 
+// Return only the necessary fields of the file's records in the form of a
+// uniform Record object
 const uniformParse = function(file, fileContents) {
-  parse(file, fileContents);
+  let records = parse(file, fileContents);
+  let uniformRecords = [];
+  records.forEach(record => {
+    uniformRecords.push(new Record(
+      record.call,
+      moment(record.date + record.time, "YYYY-MM-DDhhmm"),
+      record.frequency,
+      record.sentRST,
+      record.receivedRST,
+      record.gridSquare
+    ));
+  });
+  return uniformRecords;
 }
 
 module.exports.parse = parse;
