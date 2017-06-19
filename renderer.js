@@ -53,13 +53,15 @@ function handleFileUpload(file) {
   // When the File is read entirely, process its contents
   fileReader.onload = () => {
     const selectedFile = document.getElementsByClassName('file-upload__uploaded-file-name')[0];
+    // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
     try {
       parser.parse(file, fileReader.result);
-      // Show the uploaded file's name and size
-      selectedFile.innerHTML = `${file.name} (${bytesToSize(file.size)})`;
+      // If the file is valid, show its name and size
+      selectedFile.innerHTML = `Successfully loaded file: "${file.name}" (${bytesToSize(file.size)})`;
       selectedFile.classList.remove('upload-failed');
       selectedFile.classList.add('upload-successful');
     } catch(exception) {
+      // If the file is invalid, show an error message
       console.log(exception.message);
       document.getElementsByClassName('file-upload__uploaded-file-name')[0].innerHTML = exception.message;
       selectedFile.classList.remove('upload-successful');
