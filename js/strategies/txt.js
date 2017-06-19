@@ -1,7 +1,12 @@
 'use strict';
 
+// Contains the model for the uniform Record object
+const Record = require('../models/record').Record;
+// External library for more convenient Date manipulation
+const moment = require('../../node_modules/moment/moment');
+
 // Define the Record class
-function Record(date, time, frequency, mode, myCall, sentRST, myExchange, 
+function TxtRecord(date, time, frequency, mode, myCall, sentRST, myExchange, 
   myGridSquare, call, receivedRST, exchange, gridSquare) {
     this.date = date;
     this.time = time;
@@ -29,14 +34,28 @@ const parse = function(file, fileContents) {
 
   // Turn each record string into a Record Object
   records.forEach((record, recordIndex) => {
-    records[recordIndex] = new Record(...(record.trim().split(/\s+/g)));
-  })
-  
-  console.log(records);
+    records[recordIndex] = new TxtRecord(...(record.trim().split(/\s+/g)));
+  });
+
+  return records;
 }
 
+// Return only the necessary fields of the file's records in the form of a
+// uniform Record object
 const uniformParse = function(file, fileContents) {
-  parse(file, fileContents);
+  let records = parse(file, fileContents);
+  let uniformRecords = [];
+  records.forEach(record => {
+    uniformRecords.push(new Record(
+      record.call,
+      moment(record.date + record.time, "YYYYMMDDhhmm"),
+      parseFloat(record.frequency.replace(',', '.')) / 1000,
+      record.sentRST,
+      record.receivedRST,
+      record.gridSquare
+    ));
+  });
+  return uniformRecords;
 }
 
 module.exports.parse = parse;

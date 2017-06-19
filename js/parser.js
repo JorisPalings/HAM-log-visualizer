@@ -19,7 +19,7 @@ const parse = function(file, fileContents) {
   } else if(fileName.endsWith('.log')) {
     console.log(logParser.uniformParse(file, fileContents));
   } else if(fileName.endsWith('.txt')) {
-    txtParser.parse(file, fileContents);
+    console.log(txtParser.uniformParse(file, fileContents));
   } else {
     throw new FileFormatException(`Invalid file format: "${file.name.slice(file.name.lastIndexOf('.'))}"`);
   }
