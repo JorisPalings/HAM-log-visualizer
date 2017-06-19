@@ -2,6 +2,11 @@
 
 'use strict';
 
+// Contains the model for the uniform Record object
+const Record = require('../models/record').Record;
+// External library for more convenient Date manipulation
+const moment = require('../../node_modules/moment/moment');
+
 const delimiterTags = {
   header: {
     upper: '<EOH>',
@@ -59,13 +64,23 @@ const parse = function(file, fileContents) {
     })
     calls.push(call);
   });
-
-  console.log(header);
-  console.log(calls);
+  return calls;
 }
 
 const uniformParse = function(file, fileContents) {
-  parse(file, fileContents);
+  let records = parse(file, fileContents);
+  let uniformRecords = [];
+  records.forEach(record => {
+    uniformRecords.push(new Record(
+      record["CALL"],
+      moment(record["QSO_DATE"] + record["TIME_ON"], "YYYYMMDDHHmmss"),
+      record["FREQ"],
+      record["RST_SENT"],
+      record["RST_RCVD"],
+      record["GRIDSQUARE"]
+    ));
+  });
+  return uniformRecords;
 }
 
 module.exports.parse = parse;

@@ -13,7 +13,7 @@ function FileFormatException(message) {
 const parse = function(file, fileContents) {
   let fileName = file.name.toLowerCase();
   if(fileName.endsWith('.adi')) {
-    adiParser.parse(file, fileContents);
+    console.log(adiParser.uniformParse(file, fileContents));
   } else if(fileName.endsWith('.edi')) {
     ediParser.parse(file, fileContents);
   } else if(fileName.endsWith('.log')) {
