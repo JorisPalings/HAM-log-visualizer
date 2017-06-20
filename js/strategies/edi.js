@@ -68,12 +68,15 @@ const uniformParse = function(file, fileContents) {
   let headerAndRecords = parse(file, fileContents);
   let header = headerAndRecords.header;
   let records = headerAndRecords.records;
+  let [frequency, unit] = header["PBand"].split(' ');
+  if(unit == "GHz") frequency += "000";
+  frequency = parseFloat(frequency);
   let uniformRecords = [];
   records.forEach(record => {
     uniformRecords.push(new Record(
       record.call,
       moment(record.date + record.time, "YYMMDDhhmm"),
-      header["PBand"],
+      frequency,
       record.sentRST,
       record.receivedRST,
       record.receivedWWL

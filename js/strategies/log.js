@@ -57,7 +57,7 @@ const uniformParse = function(file, fileContents) {
     uniformRecords.push(new Record(
       record.call,
       moment(record.date + record.time, "YYYY-MM-DDhhmm"),
-      record.frequency,
+      parseFloat(record.frequency),
       record.sentRST,
       record.receivedRST,
       record.gridSquare
