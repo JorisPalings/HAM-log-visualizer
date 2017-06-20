@@ -73,7 +73,7 @@ const uniformParse = function(file, fileContents) {
     uniformRecords.push(new Record(
       record.call,
       moment(record.date + record.time, "YYMMDDhhmm"),
-      header["PBand"].split(' ')[0],
+      header["PBand"],
       record.sentRST,
       record.receivedRST,
       record.receivedWWL

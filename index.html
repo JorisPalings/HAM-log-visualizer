@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="tableApp">
   <head>
     <meta charset="UTF-8">
     <title>Log2KML</title>
     <link rel="stylesheet" href="./css/main.css">
+    <script src="./node_modules/angular/angular.js"></script>
+    <script src="./js/table.js"></script>
   </head>
   <body>
     <div class="drag-and-drop__dropzone file-upload">
@@ -11,6 +13,9 @@
       <span>Drag and drop a file here</span>
       <label class="file-upload__label" for="file-upload">or browse your computer for a file</label>
       <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log">
+    </div>
+    <div ng-controller="TableController as table">
+      {{table.records}}
     </div>
   </body>
   <script>
