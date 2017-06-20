@@ -14,9 +14,26 @@
       <label class="file-upload__label" for="file-upload">or browse your computer for a file</label>
       <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log">
     </div>
-    <div ng-controller="TableController as table">
-      {{table.records}}
-    </div>
+    <table id="table" ng-controller="TableController as table">
+      <thead>
+        <th>To</th>
+        <th>Date &amp; time</th>
+        <th>Frequency</th>
+        <th>Sent RST</th>
+        <th>Received RST</th>
+        <th>Grid square</th>
+      </thead>
+      <tbody>
+        <tr ng-repeat="record in records">
+          <td>{{record.call}}</td>
+          <td>{{record.dateTime}}</td>
+          <td>{{record.frequency}}</td>
+          <td>{{record.sentRST}}</td>
+          <td>{{record.receivedRST}}</td>
+          <td>{{record.gridSquare}}</td>
+        </tr>
+      </tbody>
+    </table>
   </body>
   <script>
     require('./renderer.js')

@@ -55,7 +55,7 @@ function handleFileUpload(file) {
     const selectedFile = document.getElementsByClassName('file-upload__uploaded-file-name')[0];
     // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
     try {
-      parser.parse(file, fileReader.result);
+      angular.element(document.getElementById('table')).scope().addRecords(parser.parse(file, fileReader.result));
       // If the file is valid, show its name and size
       selectedFile.innerHTML = `Successfully loaded file: "${file.name}" (${bytesToSize(file.size)})`;
       selectedFile.classList.remove('upload-failed');

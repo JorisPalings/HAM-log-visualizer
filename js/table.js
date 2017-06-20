@@ -1,14 +1,14 @@
 angular.module('tableApp', [])
-  .controller('TableController', function() {
-    var table = this;
+  .controller('TableController', ['$scope', $scope => {
+    $scope.records = ["A", "B", "C"];
 
-    table.records = ["Sample record", "Another sample record"];
-
-    table.addRecords = (records) => {
-      table.records = [...table.records, ...records];
+    $scope.addRecords = (records) => {
+      $scope.records = [...$scope.records, ...records];
+      $scope.$apply();
     };
 
-    table.clear = () => {
-      table.records = [];
+    $scope.clear = () => {
+      $scope.records = [];
+      $scope.$apply();
     }
-  });
+  }]);
