@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="tableApp">
+<html ng-app="tableApp" ng-controller="TableController as table">
   <head>
     <meta charset="UTF-8">
     <title>Log2KML</title>
@@ -8,23 +8,25 @@
     <script src="./js/table.js"></script>
   </head>
   <body>
-    <div class="drag-and-drop__dropzone file-upload">
+    <header class="drag-and-drop__dropzone file-upload">
       <p class="file-upload__uploaded-file-name">No file uploaded</p>
       <span>Drag and drop a file here</span>
       <label class="file-upload__label" for="file-upload">or browse your computer for a file</label>
       <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log">
-    </div>
-    <table id="table" ng-controller="TableController as table">
-      <thead>
-        <th>To</th>
-        <th>Date &amp; time</th>
-        <th>Frequency</th>
-        <th>Sent RST</th>
-        <th>Received RST</th>
-        <th>Grid square</th>
+    </header>
+    <table class="table" ng-show="records.length != 0" id="table">
+      <thead class="table__table-head">
+        <tr class="table__table-head-title-row">
+          <th scope="col">To</th>
+          <th scope="col">Date &amp; time</th>
+          <th scope="col">Frequency</th>
+          <th scope="col">Sent RST</th>
+          <th scope="col">Received RST</th>
+          <th scope="col">Grid square</th>
+        </tr>
       </thead>
-      <tbody>
-        <tr ng-repeat="record in records">
+      <tbody class="table__table-body">
+        <tr class="table__table-body-row" ng-repeat="record in records">
           <td>{{record.call}}</td>
           <td>{{record.dateTime}}</td>
           <td>{{record.frequency}}</td>
@@ -34,6 +36,13 @@
         </tr>
       </tbody>
     </table>
+    <footer class="table-controls" ng-show="records.length != 0">
+      <p>Showing {{records.length}} calls</p>
+      <div class="table-controls__button-group">
+        <button class="table-controls__clear-button button" type="button" ng-click="clear()">Clear</button>
+        <button class="table-controls__convert-button button" type="button">Export as .kml</button>
+      </div>
+    </footer>
   </body>
   <script>
     require('./renderer.js')

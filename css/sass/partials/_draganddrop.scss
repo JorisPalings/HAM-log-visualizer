@@ -3,16 +3,15 @@
   &__dropzone {
     background: $darkgrey;
     border: .125em dashed $amber;
-    border-radius: .5em;
-    box-shadow: 0 0 0 .5em $darkgrey;
-    margin: 1.5em;
+    box-shadow: $shadow2;
+    margin: 1em;
     padding: 1em;
     transition: all .25s ease-in-out;
-    width: calc(100% - 3em);
+    width: calc(100% - 2em);
 
     &.dragover {
       animation: .5s infinite alternate border;
-      box-shadow: 0 0 0 .5em $darkgrey, $shadow4;
+      box-shadow: $shadow3;
     }
   }
 }

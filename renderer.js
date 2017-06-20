@@ -43,18 +43,22 @@ const parser = require('./js/parser');
   const fileUpload = document.getElementsByClassName('file-upload__input')[0];
   fileUpload.onchange = (event) => {
     handleFileUpload(event.target.files[0]);
+    // Reset the input's value, otherwise the onchange event is not fired 
+    // and the same file cannot be uploaded twice in a row
+    fileUpload.value = null;
     return false;
   }
 })()
 
 function handleFileUpload(file) {
+  console.log('entered handleFileUpload with file', file.name);
   let fileReader = new FileReader();
 
   // When the File is read entirely, process its contents
   fileReader.onload = () => {
     const selectedFile = document.getElementsByClassName('file-upload__uploaded-file-name')[0];
-    // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
     try {
+      // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
       angular.element(document.getElementById('table')).scope().addRecords(parser.parse(file, fileReader.result));
       // If the file is valid, show its name and size
       selectedFile.innerHTML = `Successfully loaded file: "${file.name}" (${bytesToSize(file.size)})`;

@@ -1,0 +1,34 @@
+.table {
+  background: $red;
+  box-shadow: $shadow2;
+  margin: 1em;
+  width: calc(100% - 2em);
+
+  th, td {
+    padding: .5em 1em;
+  }
+
+  &__table-head {
+
+    &-title-row {
+      background: $amber;
+      color: $black;
+
+      th {
+        text-align: left;
+      }
+    }
+  }
+
+  &__table-body {
+
+    &-row {
+      background: $darkgrey;
+      transition: all .25s ease-in-out;
+
+      &:hover {
+        background: $darkergrey;
+      }
+    }
+  }
+}
