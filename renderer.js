@@ -6,6 +6,8 @@
 
 const parser = require('./js/parser');
 const converter = require('./js/converter');
+const {dialog} = require('electron').remote;
+const fs = require('fs');
 
 (() => {
   const dropzone = document.getElementsByClassName('drag-and-drop__dropzone')[0];
@@ -60,11 +62,15 @@ function handleFileUpload(file) {
     try {
       // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
       angular.element(document.getElementById('table')).scope().addRecords(parser.parse(file, fileReader.result));
-      toKML(angular.element(document.getElementById('table')).scope().getRecords());
       // If the file is valid, show its name and size
       selectedFile.innerHTML = `Successfully loaded file: "${file.name}" (${bytesToSize(file.size)})`;
       selectedFile.classList.remove('upload-failed');
       selectedFile.classList.add('upload-successful');
+      // Add an onclick event handler to the "Save as .kml" button
+      let convertButton = document.getElementsByClassName('table-controls__convert-button button')[0];
+      convertButton.onclick = () => {
+        saveToKML();
+      }
     } catch(exception) {
       // If the file is invalid, show an error message
       console.log(exception.message);
@@ -86,6 +92,17 @@ function bytesToSize(bytes) {
   return `${(bytes / (1024 ** number)).toFixed(2)} ${sizes[number]}`;
 }
 
-function toKML(records) {
-  converter.toKML(records);
+function saveToKML() {
+  dialog.showSaveDialog({
+    filters: [{
+      name: 'Google Earth Keyhole Markup',
+      extensions: ['kml']
+    }]
+  }, path => {
+    let kml = converter.toKML(angular.element(document.getElementById('table')).scope().getRecords());
+    fs.writeFile(path, kml, function(error) {
+      // TODO: Proper error handling
+      if(error) console.log(error);
+    });
+  });
 }

@@ -5,7 +5,6 @@ const moment = require('../node_modules/moment/moment')
 const js2xml = require('../node_modules/js2xmlparser');
 
 const toKML = function(records) {
-  console.log('toKML', records);
   let placemarks = [];
   let data  = {
     "@": {
@@ -31,7 +30,7 @@ const toKML = function(records) {
     });
   });
   data["Document"]["Placemark"] = placemarks;
-  return js2xml.parse("kml", data);
+  return js2xml.parse('kml', data);
 }
 
 module.exports.toKML = toKML;
