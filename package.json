@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "angular": "^1.6.4",
+    "js2xmlparser": "^3.0.0",
     "moment": "^2.18.1"
   }
 }

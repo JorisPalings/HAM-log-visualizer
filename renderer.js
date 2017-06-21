@@ -5,6 +5,7 @@
 'use strict';
 
 const parser = require('./js/parser');
+const converter = require('./js/converter');
 
 (() => {
   const dropzone = document.getElementsByClassName('drag-and-drop__dropzone')[0];
@@ -51,7 +52,6 @@ const parser = require('./js/parser');
 })()
 
 function handleFileUpload(file) {
-  console.log('entered handleFileUpload with file', file.name);
   let fileReader = new FileReader();
 
   // When the File is read entirely, process its contents
@@ -60,6 +60,7 @@ function handleFileUpload(file) {
     try {
       // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
       angular.element(document.getElementById('table')).scope().addRecords(parser.parse(file, fileReader.result));
+      toKML(angular.element(document.getElementById('table')).scope().getRecords());
       // If the file is valid, show its name and size
       selectedFile.innerHTML = `Successfully loaded file: "${file.name}" (${bytesToSize(file.size)})`;
       selectedFile.classList.remove('upload-failed');
@@ -83,4 +84,8 @@ function bytesToSize(bytes) {
   const number = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)), 10);
   if(number == 0) return `${bytes} ${sizes[number]}`;
   return `${(bytes / (1024 ** number)).toFixed(2)} ${sizes[number]}`;
+}
+
+function toKML(records) {
+  converter.toKML(records);
 }
