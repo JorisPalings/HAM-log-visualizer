@@ -13,25 +13,21 @@ const fs = require('fs');
   const dropzone = document.getElementsByClassName('drag-and-drop__dropzone')[0];
 
   dropzone.ondragover = (event) => {
-    console.log('dragover', event);
     dropzone.classList.add('dragover');
     return false;
   }
 
   dropzone.ondragleave = (event) => {
-    console.log('dragleave', event);
     dropzone.classList.remove('dragover');
     return false;
   }
 
   dropzone.ondragend = (event) => {
-    console.log('dragend', event);
     dropzone.classList.remove('dragover');
     return false;
   }
 
   dropzone.ondrop = (event) => {
-    console.log('drop', event);
     // Stop the browser window from simply displaying the dropped file
     event.stopPropagation();
     event.preventDefault();
