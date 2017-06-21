@@ -80,6 +80,7 @@ function handleFileUpload(file) {
   fileReader.readAsText(file);
 }
 
+// Convert file size in bytes to a more fitting unit
 function bytesToSize(bytes) {
   const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
   if(bytes == 0) return 'n/a';
@@ -95,7 +96,9 @@ function saveToKML() {
       extensions: ['kml']
     }]
   }, path => {
+    // Convert all currently loaded records to .kml data
     let kml = converter.toKML(angular.element(document.getElementById('table')).scope().getRecords());
+    // Write .kml data to the chosen path
     fs.writeFile(path, kml, function(error) {
       // TODO: Proper error handling
       if(error) console.log(error);

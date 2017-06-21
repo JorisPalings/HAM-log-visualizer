@@ -6,6 +6,7 @@ const js2xml = require('../node_modules/js2xmlparser');
 
 const toKML = function(records) {
   let placemarks = [];
+  // Default .kml tags
   let data  = {
     "@": {
       "xmlns": "http://www.opengis.net/kml/2.2"
@@ -14,6 +15,7 @@ const toKML = function(records) {
       "Placemark": {}
     }
   }
+  // Add a <Placemark> tag for every record
   records.forEach(record => {
     placemarks.push({
       "name": record.call,
