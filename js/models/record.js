@@ -1,5 +1,6 @@
 'use strict';
 
+// Model for the uniform Record returned by all different parsing strategies
 function Record(call, dateTime, frequency, sentRST, receivedRST, gridSquare) {
     this.call = call;
     this.dateTime = dateTime;

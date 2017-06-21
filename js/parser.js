@@ -10,6 +10,9 @@ function FileFormatException(message) {
    this.name = 'FileFormatException';
 }
 
+// Select a fitting parsing strategy for the given file, based on its extension
+// TODO: Optionally base strategy choice on number of records when parsed 
+// rather than file extension
 const parse = function(file, fileContents) {
   let fileName = file.name.toLowerCase();
   if(fileName.endsWith('.adi')) {
