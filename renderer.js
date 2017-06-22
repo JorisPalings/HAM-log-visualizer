@@ -63,7 +63,7 @@ function handleFileUpload(file) {
       // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
       angular.element(document.getElementById('table')).scope().addRecords(parser.parse(file, fileReader.result));
       // If the file is valid, show its name and size
-      selectedFile.innerHTML = `Successfully loaded file: "${file.name}" (${bytesToSize(file.size)})`;
+      selectedFile.innerHTML = `Loaded file: "${file.name}" (${bytesToSize(file.size)})`;
       selectedFile.classList.remove('upload-failed');
       selectedFile.classList.add('upload-successful');
       // Add an onclick event handler to the "Save as .kml" button
