@@ -35,13 +35,17 @@ const fs = require('fs');
     // Remove the CSS
     dropzone.classList.remove('dragover')
 
-    handleFileUpload(event.dataTransfer.files[0]);
+    for(let i = 0; i < event.dataTransfer.files.length; i ++) {
+      handleFileUpload(event.dataTransfer.files[i]);
+    }
     return false;
   } 
 
   const fileUpload = document.getElementsByClassName('file-upload__input')[0];
   fileUpload.onchange = (event) => {
-    handleFileUpload(event.target.files[0]);
+    for(let i = 0; i < event.target.files.length; i ++) {
+      handleFileUpload(event.target.files[i]);
+    }
     // Reset the input's value, otherwise the onchange event is not fired 
     // and the same file cannot be uploaded twice in a row
     fileUpload.value = null;
