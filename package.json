@@ -1,21 +1,30 @@
 {
-  "name": "ham-log-visualizer",
+  "name": "hamlogvisualizer",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "dev": "gulp",
-    "package": "electron-packager ./ HAM-log-visualizer --all --out C:/Users/Joris/Desktop/HAM-log-visualizer --overwrite"
+    "package": "electron-packager ./ HAM-log-visualizer --all --out C:/Users/Joris/Desktop/HAM-log-visualizer --overwrite",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
   "repository": "",
   "keywords": [],
   "author": "Joris Palings",
   "license": "",
+  "build": {
+    "appId": "com.palings.ham-log-visualizer",
+    "productName": "HAM Log Visualizer",
+    "win": {
+      "target": "portable"
+    }
+  },
   "devDependencies": {
     "electron": "^1.6.11",
+    "electron-builder": "^19.7.1",
     "electron-connect": "^0.6.1",
-    "electron-packager": "^8.7.1",
     "gulp": "^3.9.1",
     "gulp-sass": "^3.1.0"
   },
