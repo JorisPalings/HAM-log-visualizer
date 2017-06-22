@@ -10,7 +10,7 @@ const {dialog} = require('electron').remote;
 const fs = require('fs');
 
 (() => {
-  const dropzone = document.getElementsByClassName('drag-and-drop__dropzone')[0];
+  const dropzone = document.getElementsByTagName('body')[0];
 
   dropzone.ondragover = (event) => {
     dropzone.classList.add('dragover');
