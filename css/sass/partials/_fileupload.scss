@@ -2,6 +2,7 @@
   background: $darkestgrey;
   box-shadow: $shadow2;
   display: flex;
+  height: 3.5em;
   justify-content: space-between;
   padding: 1em 2em;
   position: sticky;
@@ -11,6 +12,7 @@
   
   &__uploaded-file-name {
     color: $grey;
+    overflow: hidden;
     transition: all .25s ease-in-out;
 
     &.upload-successful {
@@ -20,6 +22,11 @@
     &.upload-failed {
       color: $red;
     }
+  }
+
+  &__upload-instructions {
+    flex-shrink: 0;
+    overflow: hidden;
   }
 
   &__label { 
