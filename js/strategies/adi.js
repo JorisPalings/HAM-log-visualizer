@@ -74,6 +74,7 @@ const uniformParse = function(file, fileContents) {
   let uniformRecords = [];
   records.forEach(record => {
     uniformRecords.push(new Record(
+      file.name,
       record["CALL"],
       moment(record["QSO_DATE"] + record["TIME_ON"], "YYYYMMDDHHmmss"),
       parseFloat(record["FREQ"]),

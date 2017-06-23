@@ -62,10 +62,10 @@ function handleFileUpload(file) {
     try {
       // Make sure the file is of a valid format (.adi, .edi, .log or .txt)
       angular.element(document.getElementById('table')).scope().addRecords(parser.parse(file, fileReader.result));
-      // If the file is valid, show its name and size
-      selectedFile.innerHTML = `Loaded file: "${file.name}" (${bytesToSize(file.size)})`;
-      selectedFile.classList.remove('upload-failed');
-      selectedFile.classList.add('upload-successful');
+
+      // Add the file to the list of loaded files
+      angular.element(document.getElementById('table')).scope().addFile(file.name);
+
       // Add an onclick event handler to the "Save as .kml" button
       let convertButton = document.getElementsByClassName('table-controls__convert-button button')[0];
       convertButton.onclick = () => {
@@ -73,8 +73,7 @@ function handleFileUpload(file) {
       }
     } catch(exception) {
       // If the file is invalid, show an error message
-      console.log(exception.message);
-      document.getElementsByClassName('file-upload__uploaded-file-name')[0].innerHTML = exception.message;
+      document.getElementsByClassName('file-upload__message')[0].innerHTML = exception.message;
       selectedFile.classList.remove('upload-successful');
       selectedFile.classList.add('upload-failed');
     }

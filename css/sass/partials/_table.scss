@@ -1,21 +1,23 @@
 .table {
-  background: $red;
   box-shadow: $shadow2;
+  flex-grow: 1;
   margin: 1em;
-  width: calc(100% - 2em);
 
   th, td {
     padding: .5em 1em;
   }
 
   &__table-head {
+    position: sticky;
+    top: 0;
 
     &-title-row {
-      background: $amber;
-      color: $black;
+      background: $table-header-color;
 
       th {
+        font: 1em/1.5 'Montserrat', sans-serif;
         text-align: left;
+        text-transform: uppercase;
       }
     }
   }
@@ -23,11 +25,16 @@
   &__table-body {
 
     &-row {
-      background: $darkgrey;
+      background: $table-row-color;
       transition: all .25s ease-in-out;
 
+      &:nth-of-type(even) {
+        background: $table-row-alternate-color;
+      }
+
       &:hover {
-        background: $darkergrey;
+        background: $primary-color;
+        color: $white;
       }
     }
   }

@@ -9,29 +9,31 @@
   top: 0;
   transition: all .25s ease-in-out;
   width: 100%;
-  
-  &__uploaded-file-name {
-    color: $grey;
-    overflow: hidden;
-    transition: all .25s ease-in-out;
 
-    &.upload-successful {
-      color: $green;
-    }
-
-    &.upload-failed {
-      color: $red;
-    }
+  &__instruction {
+    font: .75em/1.5 'Montserrat', sans-serif;
+    margin: 0 1em 1em;
+    text-transform: uppercase;
   }
 
-  &__upload-instructions {
-    flex-shrink: 0;
-    overflow: hidden;
-  }
-
-  &__label { 
-    border-bottom: 1px solid $amber;
+  &__label {
     cursor: pointer;
+
+    &.button {
+      background: $primary-color;
+      border: 0;
+      color: $white;
+      cursor: pointer;
+      display: block;
+      font-size: 1em;
+      margin: 1em 1em .5em;
+      padding: .5em 1em;
+      transition: all .25s ease-in-out;
+
+      &:hover {
+        box-shadow: $shadow2;
+      }
+    }
   }
 
   &__input {

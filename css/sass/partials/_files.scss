@@ -1,0 +1,28 @@
+.files {
+  background: $card-background-color;
+  box-shadow: $shadow2;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0 0 1em;
+  min-height: 100vh;
+  text-align: center;
+  width: 15em;
+
+  &__file-list {
+    
+    &-item {
+      background: $table-row-color;
+      overflow: hidden;
+      padding: .5em 1em;
+      text-align: left;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 15em;
+
+      &:nth-of-type(even) {
+        background: $table-row-alternate-color;
+      }
+    }
+  }
+}

@@ -8,7 +8,13 @@ html, body {
 }
 
 body {
-  background: $darkergrey;
-  color: $white;
-  font: 1em/1.5 sans-serif;
+  background: $lightestgrey;
+  color: $black;
+  font: 1em/1.5 'Roboto', sans-serif;
+
+  main {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
 }

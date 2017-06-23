@@ -55,6 +55,7 @@ const uniformParse = function(file, fileContents) {
   let uniformRecords = [];
   records.forEach(record => {
     uniformRecords.push(new Record(
+      file.name,
       record.call,
       moment(record.date + record.time, "YYYY-MM-DDhhmm"),
       parseFloat(record.frequency),

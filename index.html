@@ -3,41 +3,47 @@
   <head>
     <meta charset="UTF-8">
     <title>HAM Log Visualizer</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat|Roboto">
     <link rel="stylesheet" href="./css/main.css">
     <script src="./node_modules/angular/angular.js"></script>
     <script src="./js/table.js"></script>
   </head>
   <body>
-    <header class="file-upload">
-      <p class="file-upload__uploaded-file-name">No file uploaded</p>
-      <p class="file-upload__upload-instructions">
-        <label class="file-upload__label" for="file-upload">Browse your computer for files</label>
-        <span>or drag &amp; drop them onto this window</span>
-      </p>
-      <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log" multiple>
-    </header>
-    <table class="table" ng-show="records.length != 0" id="table">
-      <thead class="table__table-head">
-        <tr class="table__table-head-title-row">
-          <th scope="col">To</th>
-          <th scope="col">Date &amp; time</th>
-          <th scope="col">Frequency</th>
-          <th scope="col">Sent RST</th>
-          <th scope="col">Received RST</th>
-          <th scope="col">Grid square</th>
-        </tr>
-      </thead>
-      <tbody class="table__table-body">
-        <tr class="table__table-body-row" ng-repeat="record in records">
-          <td>{{record.call}}</td>
-          <td>{{record.dateTime.format("LLL")}}</td>
-          <td>{{record.frequency}}</td>
-          <td>{{record.sentRST}}</td>
-          <td>{{record.receivedRST}}</td>
-          <td>{{record.gridSquare}}</td>
-        </tr>
-      </tbody>
-    </table>
+    <main>
+      <aside class="files">
+        <p class="file-upload__message"></p>
+        <label class="file-upload__label button" for="file-upload">Choose files</label>
+        <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log" multiple>
+        <span class="file-upload__instruction">or drag &amp; drop them here</span>
+        <ul class="files__file-list">
+          <li class="files__file-list-item" ng-repeat="file in files">{{file}}</li>
+        </ul>
+      </aside>
+
+      <table class="table" ng-show="records.length != 0" id="table">
+        <thead class="table__table-head">
+          <tr class="table__table-head-title-row">
+            <th scope="col">To</th>
+            <th scope="col">Date &amp; time</th>
+            <th scope="col">Frequency</th>
+            <th scope="col">Sent RST</th>
+            <th scope="col">Received RST</th>
+            <th scope="col">Grid square</th>
+          </tr>
+        </thead>
+        <tbody class="table__table-body">
+          <tr class="table__table-body-row" ng-repeat="record in records">
+            <td>{{record.call}}</td>
+            <td>{{record.dateTime.format("LLL")}}</td>
+            <td>{{record.frequency}}</td>
+            <td>{{record.sentRST}}</td>
+            <td>{{record.receivedRST}}</td>
+            <td>{{record.gridSquare}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
     <footer class="table-controls" ng-show="records.length != 0">
       <p>Showing {{records.length}} calls</p>
       <div class="table-controls__button-group">
