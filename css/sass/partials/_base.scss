@@ -16,5 +16,11 @@ body {
     display: flex;
     flex-direction: row;
     width: 100%;
+
+    .records {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
   }
 }

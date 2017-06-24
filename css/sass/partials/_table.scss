@@ -1,7 +1,7 @@
 .table {
   box-shadow: $shadow2;
-  flex-grow: 1;
   margin: 1em;
+  width: calc(100% - 2em);
 
   th, td {
     padding: .5em 1em;
@@ -9,7 +9,7 @@
 
   &__table-head {
     position: sticky;
-    top: 0;
+    top: 2.5em;
 
     &-title-row {
       background: $table-header-color;

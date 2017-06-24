@@ -11,41 +11,49 @@
   <body>
     <main>
       <aside class="files">
-        <p class="file-upload__message"></p>
         <label class="file-upload__label button" for="file-upload">Choose files</label>
         <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log" multiple>
         <span class="file-upload__instruction">or drag &amp; drop them here</span>
+        <p class="file-upload__message"></p>
         <ul class="files__file-list">
-          <li class="files__file-list-item" ng-repeat="file in files">{{file}}</li>
+          <li class="files__file-list-item" ng-repeat="file in files" title="{{file}}">
+            <button class="files__file-list-item-delete-button" type="button" ng-click="deleteFile(file)">
+              <img src="img/icons/delete.svg" alt="Delete {{file}}">
+            </button>
+            {{file}}
+          </li>
         </ul>
       </aside>
 
-      <table class="table" ng-show="records.length != 0" id="table">
-        <thead class="table__table-head">
-          <tr class="table__table-head-title-row">
-            <th scope="col">To</th>
-            <th scope="col">Date &amp; time</th>
-            <th scope="col">Frequency</th>
-            <th scope="col">Sent RST</th>
-            <th scope="col">Received RST</th>
-            <th scope="col">Grid square</th>
-          </tr>
-        </thead>
-        <tbody class="table__table-body">
-          <tr class="table__table-body-row" ng-repeat="record in records">
-            <td>{{record.call}}</td>
-            <td>{{record.dateTime.format("LLL")}}</td>
-            <td>{{record.frequency}}</td>
-            <td>{{record.sentRST}}</td>
-            <td>{{record.receivedRST}}</td>
-            <td>{{record.gridSquare}}</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="records">
+        <input class="search__search-bar" id="search" type="search" name="search" placeholder="Search" ng-model="filter">
+        <table class="table" ng-show="records.length != 0" id="table">
+          <thead class="table__table-head">
+            <tr class="table__table-head-title-row">
+              <th scope="col">To</th>
+              <th scope="col">Date &amp; time</th>
+              <th scope="col">Frequency</th>
+              <th scope="col">Sent RST</th>
+              <th scope="col">Received RST</th>
+              <th scope="col">Grid square</th>
+            </tr>
+          </thead>
+          <tbody class="table__table-body">
+            <tr class="table__table-body-row" ng-repeat="record in records | filter:filter">
+              <td>{{record.call}}</td>
+              <td>{{record.dateTime.format("LLL")}}</td>
+              <td>{{record.frequency}}</td>
+              <td>{{record.sentRST}}</td>
+              <td>{{record.receivedRST}}</td>
+              <td>{{record.gridSquare}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </main>
 
     <footer class="table-controls" ng-show="records.length != 0">
-      <p>Showing {{records.length}} calls</p>
+      <p>Showing {{records.length == 1 ? "1 call" : records.length + " calls"}} across {{files.length == 1 ? "1 file" : files.length + " files"}}.</p>
       <div class="table-controls__button-group">
         <button class="table-controls__clear-button button" type="button" ng-click="clear()">Clear</button>
         <button class="table-controls__convert-button button" type="button">Save as .kml</button>
