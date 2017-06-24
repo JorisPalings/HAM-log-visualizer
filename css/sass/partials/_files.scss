@@ -19,6 +19,7 @@
       text-overflow: ellipsis;
       white-space: nowrap;
       width: 15em;
+      transition: all .25s ease-in-out;
 
       &:nth-of-type(even) {
         background: $table-row-alternate-color;
@@ -36,6 +37,7 @@
         display: none;
         height: .75em;
         padding: 0;
+        transition: all .25s ease-in-out;
         vertical-align: top;
 
         &:focus {
