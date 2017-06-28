@@ -11,7 +11,7 @@
   <body>
     <main>
       <aside class="files">
-        <label class="file-upload__label button" for="file-upload">Choose files</label>
+        <label class="button" for="file-upload">Choose files</label>
         <input class="file-upload__input" type="file" id="file-upload" accept=".adi,.edi,.txt,.log" multiple>
         <span class="file-upload__instruction">or drag &amp; drop them here</span>
         <p class="file-upload__message"></p>
@@ -59,6 +59,78 @@
         <button class="table-controls__convert-button button" type="button">Save as .kml</button>
       </div>
     </footer>
+
+    <div class="backdrop"></div>
+    <div class="modal">
+      <div class="modal__container center-content">
+        <div class="modal__save">
+          <form>
+            <fieldset>
+              <legend>Markers</legend>
+              <label>
+                <input type="radio" name="markerColor" id="marker-color-band" ng-model="markerColor" ng-value="'band'" ng-init="markerColor = 'band'">
+                Color by band
+              </label>
+              <table class="modal__save-marker-colors">
+                <tr>
+                  <th scope="row">50 - 52</th>
+                  <td>Red</td>
+                </tr>
+                <tr>
+                  <th scope="row">69.950 - 70.5</th>
+                  <td>Orange</td>
+                </tr>
+                <tr>
+                  <th scope="row">144 - 148</th>
+                  <td>Yellow</td>
+                </tr>
+                <tr>
+                  <th scope="row">430 - 440</th>
+                  <td>Green</td>
+                </tr>
+                <tr>
+                  <th scope="row">1240 - 1300</th>
+                  <td>Blue</td>
+                </tr>
+                <tr>
+                  <th scope="row">2300 - 2450</th>
+                  <td>Purple</td>
+                </tr>
+                <tr>
+                  <th scope="row">5650 - 5850</th>
+                  <td>Grey</td>
+                </tr>
+                <tr>
+                  <th scope="row">10000 - 10500</th>
+                  <td>White</td>
+                </tr>
+                <tr>
+                  <th scope="row">47000</th>
+                  <td>Black</td>
+                <tr>
+              </table>
+              <label>
+                <input type="radio" name="markerColor" id="marker-color-single" ng-model="markerColor" ng-value="'single'">
+                Single color
+              </label>
+              <select ng-disabled="markerColor != 'single'">
+                <option value="" disabled selected>Select a color</option>
+                <option value="red">Red</option>
+                <option value="orange">Orange</option>
+                <option value="yellow">Yellow</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+                <option value="purple">Purple</option>
+                <option value="grey">Grey</option>
+                <option value="white">White</option>
+                <option value="black">Black</option>
+              </select>
+            </fieldset>
+            <button class="button" type="button">Save</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
   <script>
     require('./renderer.js')

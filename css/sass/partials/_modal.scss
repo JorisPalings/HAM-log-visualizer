@@ -1,0 +1,68 @@
+.backdrop {
+  background: $black-transparent;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.modal {
+
+  &__container {
+    height: 100%;
+    position: fixed;
+    top: 0;
+    width: 100%;
+  }
+
+  &__save {
+    background: $white;
+    padding: 1em;
+    box-shadow: $shadow2;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    
+      legend {
+        font: 1.25em/1.5 'Montserrat', sans-serif;
+        margin-bottom: .5em;
+        text-transform: uppercase;
+      }
+
+      fieldset {
+        display: flex;
+        flex-direction: column;
+      }
+
+      label {
+        &:last-of-type {
+          margin-top: 1em;
+        }
+      }
+
+      select, option {
+        border: 0;
+        font: 1em/1.5 'Roboto', sans-serif;
+        outline: 0;
+        margin-left: 2em;
+        width: calc(100% - 2em);
+
+        &:focus {
+          outline: 0;
+        }
+      }
+    }
+
+    &-marker-colors {
+      th {
+        padding-left: 2em;
+        text-align: left;
+      }
+      td {
+        padding-left: 2em;
+      }
+    }
+  }
+}

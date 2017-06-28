@@ -11,24 +11,5 @@
   &__button-group {
     display: flex;
     align-items: center;
-
-    .button {
-      background: $primary-color;
-      border: 0;
-      color: $white;
-      cursor: pointer;
-      font-size: 1em;
-      margin-left: 1em;
-      padding: .5em 1em;
-      transition: all .25s ease-in-out;
-
-      &:hover {
-        box-shadow: $shadow2;
-      }
-
-      &:focus {
-        outline: 0;
-      }
-    }
   }
 }

@@ -95,8 +95,8 @@ function bytesToSize(bytes) {
 function saveToKML() {
   dialog.showSaveDialog({
     filters: [{
-      name: 'Google Earth Keyhole Markup',
-      extensions: ['kml']
+      name: 'Google Earth',
+      extensions: ['kmz']
     }]
   }, path => {
     // Convert all currently loaded records to .kml data

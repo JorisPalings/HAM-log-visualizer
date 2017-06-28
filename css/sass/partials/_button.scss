@@ -1,0 +1,19 @@
+.button {
+  background: $primary-color;
+  border: 0;
+  color: $white;
+  cursor: pointer;
+  display: block;
+  font-size: 1em;
+  margin: 1em 1em .5em;
+  padding: .5em 1em;
+  transition: all .25s ease-in-out;
+
+  &:hover {
+    box-shadow: $shadow2;
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
