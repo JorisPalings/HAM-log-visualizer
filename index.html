@@ -56,12 +56,12 @@
       <p>Showing {{records.length == 1 ? "1 call" : records.length + " calls"}} across {{files.length == 1 ? "1 file" : files.length + " files"}}.</p>
       <div class="table-controls__button-group">
         <button class="table-controls__clear-button button" type="button" ng-click="clear()">Clear</button>
-        <button class="table-controls__convert-button button" type="button">Save as .kml</button>
+        <button class="table-controls__save-button button" type="button">Save</button>
       </div>
     </footer>
 
-    <div class="backdrop"></div>
-    <div class="modal">
+    <div class="backdrop hidden"></div>
+    <div class="modal save-modal hidden">
       <div class="modal__container center-content">
         <div class="modal__save">
           <form>
@@ -114,8 +114,7 @@
                 Single color
               </label>
               <select ng-disabled="markerColor != 'single'">
-                <option value="" disabled selected>Select a color</option>
-                <option value="red">Red</option>
+                <option value="red" selected>Red</option>
                 <option value="orange">Orange</option>
                 <option value="yellow">Yellow</option>
                 <option value="green">Green</option>
@@ -126,7 +125,8 @@
                 <option value="black">Black</option>
               </select>
             </fieldset>
-            <button class="button" type="button">Save</button>
+            <button class="button save-modal__cancel-button" type="button">Cancel</button>
+            <button class="button save-modal__save-button" type="button">Save</button>
           </form>
         </div>
       </div>

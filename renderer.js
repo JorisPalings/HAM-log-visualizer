@@ -44,7 +44,11 @@ const fs = require('fs');
   const fileUpload = document.getElementsByClassName('file-upload__input')[0];
   fileUpload.onchange = (event) => {
     for(let i = 0; i < event.target.files.length; i ++) {
-      handleFileUpload(event.target.files[i]);
+      let loadedFiles = angular.element(document.getElementById('table')).scope().getFiles();
+      // Only add new files (disregard previously uploaded files)
+      if(loadedFiles.indexOf(event.target.files[i].name) == -1) {
+        handleFileUpload(event.target.files[i]);
+      }
     }
     // Reset the input's value, otherwise the onchange event is not fired 
     // and the same file cannot be uploaded twice in a row
@@ -66,10 +70,10 @@ function handleFileUpload(file) {
       // Add the file to the list of loaded files
       angular.element(document.getElementById('table')).scope().addFile(file.name);
 
-      // Add an onclick event handler to the "Save as .kml" button
-      let convertButton = document.getElementsByClassName('table-controls__convert-button button')[0];
-      convertButton.onclick = () => {
-        saveToKML();
+      // Add an onclick event handler to the "Save" button
+      let saveButton = document.getElementsByClassName('table-controls__save-button button')[0];
+      saveButton.onclick = () => {
+        showSaveModal();
       }
     } catch(exception) {
       // If the file is invalid, show an error message
@@ -92,6 +96,34 @@ function bytesToSize(bytes) {
   return `${(bytes / (1024 ** number)).toFixed(2)} ${sizes[number]}`;
 }
 
+function showSaveModal() {
+  // Show backdrop
+  let backdrop = document.getElementsByClassName('backdrop')[0];
+  backdrop.classList.remove('hidden');
+  // Show save modal
+  let saveModal = document.getElementsByClassName('save-modal')[0];
+  saveModal.classList.remove('hidden');
+  // Add an onclick event handler to the "Save" button
+  let saveButton = document.getElementsByClassName('save-modal__save-button')[0];
+  saveButton.onclick = () => {
+    saveToKML();
+  }
+  // Add an onclick event handler to the "Cancel" button
+  let cancelButton = document.getElementsByClassName('save-modal__cancel-button')[0];
+  cancelButton.onclick = () => {
+    hideSaveModal();
+  }
+}
+
+function hideSaveModal() {
+  // Hide backdrop
+  let backdrop = document.getElementsByClassName('backdrop')[0];
+  backdrop.classList.add('hidden');
+  // Hide save modal
+  let saveModal = document.getElementsByClassName('save-modal')[0];
+  saveModal.classList.add('hidden');
+}
+
 function saveToKML() {
   dialog.showSaveDialog({
     filters: [{
@@ -99,12 +131,14 @@ function saveToKML() {
       extensions: ['kmz']
     }]
   }, path => {
-    // Convert all currently loaded records to .kml data
-    let kml = converter.toKML(angular.element(document.getElementById('table')).scope().getRecords());
-    // Write .kml data to the chosen path
-    fs.writeFile(path, kml, function(error) {
-      // TODO: Proper error handling
-      if(error) console.log(error);
-    });
+    if(path) {
+      // Convert all currently loaded records to .kml data
+      let kml = converter.toKML(angular.element(document.getElementById('table')).scope().getRecords());
+      // Write .kml data to the chosen path
+      fs.writeFile(path, kml, function(error) {
+        // TODO: Proper error handling
+        if(error) console.log(error);
+      });
+    }
   });
 }

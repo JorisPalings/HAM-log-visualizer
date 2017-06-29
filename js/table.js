@@ -3,8 +3,6 @@ angular.module('tableApp', [])
     $scope.files = [];
     $scope.records = [];
 
-    $scope.isSaveModalOpen = false;
-
     // Return the names of all loaded files
     $scope.getFiles = () => {
       return $scope.files;
