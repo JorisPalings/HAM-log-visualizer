@@ -15,53 +15,74 @@
     width: 100%;
   }
 
-  &__save {
-    background: $white;
-    padding: 1em;
-    box-shadow: $shadow2;
+  .save-modal {
+    &__inner {
+      background: $white;
+      padding: 1em;
+      box-shadow: $shadow2;
 
-    form {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-    
-      legend {
-        font: 1.25em/1.5 'Montserrat', sans-serif;
-        margin-bottom: .5em;
-        text-transform: uppercase;
-      }
-
-      fieldset {
+      form {
         display: flex;
         flex-direction: column;
-      }
+        justify-content: flex-end;
 
-      label {
-        &:last-of-type {
-          margin-top: 1em;
-        }
-      }
+        fieldset {
+          legend {
+            font: 1.25em/1.5 'Montserrat', sans-serif;
+            margin-bottom: .5em;
+            text-transform: uppercase;
+          }
 
-      select, option {
-        border: 0;
-        font: 1em/1.5 'Roboto', sans-serif;
-        outline: 0;
-        margin-left: 2em;
-        width: calc(100% - 2em);
+          fieldset {
+            display: flex;
+            flex-direction: column;
+          }
 
-        &:focus {
-          outline: 0;
+          label {
+            &:last-of-type {
+              margin-top: 1em;
+            }
+          }
+
+          select, option {
+            border: 0;
+            font: 1em/1.5 'Roboto', sans-serif;
+            outline: 0;
+            margin-left: .5em;
+            width: calc(100% - 2em);
+
+            &:focus {
+              outline: 0;
+            }
+          }
         }
       }
     }
 
-    &-marker-colors {
+    &__marker-colors {
+      color: $grey;
+      font: .75em/1.5 'Montserrat', sans-serif;
+      margin-bottom: 1em;
+      width: 100%;
+
       th {
-        padding-left: 2em;
+        padding-left: .5em;
         text-align: left;
       }
+
       td {
-        padding-left: 2em;
+        padding-right: .5em;
+        text-align: right;
+      }
+    }
+
+    &__button-group {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+
+      .button {
+        margin: 1em 0 0 1em;
       }
     }
   }

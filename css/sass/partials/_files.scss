@@ -9,6 +9,10 @@
   text-align: center;
   flex-basis: 15em;
 
+  .button {
+    margin: 1em 1em .5em;
+  }
+
   &__file-list {
     
     &-item {
