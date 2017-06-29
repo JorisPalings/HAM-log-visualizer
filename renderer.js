@@ -151,7 +151,7 @@ function saveToKMZ() {
       extensions: ['kmz']
     }]
   }, path => {
-    console.log(path);
+    // If the given path is valid
     if(path) {
       // Write .kmz file to the chosen path
       let kmz = converter.toKMZ(angular.element(document.getElementById('table')).scope().getRecords(), // Records
