@@ -101,12 +101,12 @@ function showSaveModal() {
   let backdrop = document.getElementsByClassName('backdrop')[0];
   backdrop.classList.remove('hidden');
   // Show save modal
-  let saveModal = document.getElementsByClassName('save-modal')[0];
+  let saveModal = document.getElementsByClassName('save-modal__outer')[0];
   saveModal.classList.remove('hidden');
   // Add an onclick event handler to the "Save" button
   let saveButton = document.getElementsByClassName('save-modal__save-button')[0];
   saveButton.onclick = () => {
-    saveToKML();
+    saveToKMZ();
   }
   // Add an onclick event handler to the "Cancel" button
   let cancelButton = document.getElementsByClassName('save-modal__cancel-button')[0];
@@ -120,7 +120,7 @@ function hideSaveModal() {
   let backdrop = document.getElementsByClassName('backdrop')[0];
   backdrop.classList.add('hidden');
   // Hide save modal
-  let saveModal = document.getElementsByClassName('save-modal')[0];
+  let saveModal = document.getElementsByClassName('save-modal__outer')[0];
   saveModal.classList.add('hidden');
 }
 
@@ -131,6 +131,7 @@ function saveToKML() {
       extensions: ['kmz']
     }]
   }, path => {
+    console.log(path);
     if(path) {
       // Convert all currently loaded records to .kml data
       let kml = converter.toKML(angular.element(document.getElementById('table')).scope().getRecords());
@@ -139,6 +140,23 @@ function saveToKML() {
         // TODO: Proper error handling
         if(error) console.log(error);
       });
+    }
+  });
+}
+
+function saveToKMZ() {
+  dialog.showSaveDialog({
+    filters: [{
+      name: 'Google Earth',
+      extensions: ['kmz']
+    }]
+  }, path => {
+    console.log(path);
+    if(path) {
+      // Write .kmz file to the chosen path
+      let kmz = converter.toKMZ(angular.element(document.getElementById('table')).scope().getRecords(), // Records
+        document.querySelector('input[name="markerColor"]:checked').value, // Marker color
+        path); // Path
     }
   });
 }

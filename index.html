@@ -61,9 +61,9 @@
     </footer>
 
     <div class="backdrop hidden"></div>
-    <div class="modal save-modal hidden">
+    <div class="modal save-modal__outer hidden">
       <div class="modal__container center-content">
-        <div class="modal__save">
+        <div class="save-modal__inner">
           <form>
             <fieldset>
               <legend>Markers</legend>
@@ -71,7 +71,7 @@
                 <input type="radio" name="markerColor" id="marker-color-band" ng-model="markerColor" ng-value="'band'" ng-init="markerColor = 'band'">
                 Color by band
               </label>
-              <table class="modal__save-marker-colors">
+              <table class="save-modal__marker-colors">
                 <tr>
                   <th scope="row">50 - 52</th>
                   <td>Red</td>
@@ -125,8 +125,10 @@
                 <option value="black">Black</option>
               </select>
             </fieldset>
-            <button class="button save-modal__cancel-button" type="button">Cancel</button>
-            <button class="button save-modal__save-button" type="button">Save</button>
+            <div class="save-modal__button-group">
+              <button class="button save-modal__cancel-button" type="button">Cancel</button>
+              <button class="button save-modal__save-button" type="button">Save</button>
+            </div>
           </form>
         </div>
       </div>
