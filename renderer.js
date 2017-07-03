@@ -124,26 +124,6 @@ function hideSaveModal() {
   saveModal.classList.add('hidden');
 }
 
-function saveToKML() {
-  dialog.showSaveDialog({
-    filters: [{
-      name: 'Google Earth',
-      extensions: ['kmz']
-    }]
-  }, path => {
-    console.log(path);
-    if(path) {
-      // Convert all currently loaded records to .kml data
-      let kml = converter.toKML(angular.element(document.getElementById('table')).scope().getRecords());
-      // Write .kml data to the chosen path
-      fs.writeFile(path, kml, function(error) {
-        // TODO: Proper error handling
-        if(error) console.log(error);
-      });
-    }
-  });
-}
-
 function saveToKMZ() {
   dialog.showSaveDialog({
     filters: [{
@@ -153,9 +133,12 @@ function saveToKMZ() {
   }, path => {
     // If the given path is valid
     if(path) {
+      let checkedMarkerColor = document.querySelector('input[name="markerColor"]:checked').value;
       // Write .kmz file to the chosen path
       let kmz = converter.toKMZ(angular.element(document.getElementById('table')).scope().getRecords(), // Records
-        document.querySelector('input[name="markerColor"]:checked').value, // Marker color
+        checkedMarkerColor == 'band' 
+          ? checkedMarkerColor 
+          : document.getElementsByClassName('save-modal__color-select')[0].value, // Marker color ('band' or a color)
         path); // Path
     }
   });
