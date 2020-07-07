@@ -22,7 +22,7 @@
     }
   },
   "devDependencies": {
-    "electron": "^1.6.11",
+    "electron": "^9.1.0",
     "electron-builder": "^19.7.1",
     "electron-connect": "^0.6.1",
     "gulp": "^3.9.1",
